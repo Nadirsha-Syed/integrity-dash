@@ -1,0 +1,123 @@
+.note-strict-container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px; 
+  width: 100%;
+  box-sizing: border-box; /* Ensures the form doesn't push against grid walls */
+}
+
+/* Form Elements - Fixed Glare and Structure */
+.st-search-bar, .st-input, .st-area, .st-input-tag {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  /* Use theme variables to prevent 'spoiling' the dark mode */
+  border: 1.5px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text-main);
+  box-sizing: border-box; 
+  font-family: inherit;
+  transition: border-color 0.2s, background 0.3s;
+}
+
+.st-search-bar:focus, .st-input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.st-btn-save {
+  background: var(--primary);
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.2s;
+}
+
+.st-btn-save:hover { opacity: 0.9; }
+
+/* Note Card Items - Now blends with Midnight Theme */
+.note-card-item {
+  /* Use a secondary background for depth */
+  background: var(--bg); 
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 12px;
+  box-sizing: border-box;
+  transition: background 0.3s ease;
+}
+
+.note-card-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-start; 
+  margin-bottom: 8px;
+}
+
+.note-card-item h4 {
+  margin: 0;
+  color: var(--text-main);
+}
+
+.note-card-item p {
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.note-control-icons { display: flex; gap: 12px; }
+
+.btn-icon {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--primary);
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.btn-icon:hover { transform: scale(1.1); }
+.btn-icon.del { color: var(--text-muted); }
+.btn-icon.del:hover { color: #ef4444; }
+
+.category-pill {
+  font-size: 0.7rem;
+  /* Adjusted for better contrast on dark backgrounds */
+  background: var(--card-bg);
+  color: var(--primary);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Edit Mode Buttons */
+.edit-actions { display: flex; gap: 10px; margin-top: 12px; }
+
+.btn-save-sm { 
+  background: var(--primary); 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+  font-weight: 600;
+}
+
+.btn-cancel-sm { 
+  background: var(--card-bg); 
+  color: var(--text-muted); 
+  border: 1px solid var(--border); 
+  padding: 8px 16px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+}

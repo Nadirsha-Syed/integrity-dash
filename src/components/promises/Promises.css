@@ -1,0 +1,162 @@
+/* Layout Container */
+.habit-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Yellow Box: Entry Section */
+.habit-entry-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.st-main-input {
+  background: var(--input-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  color: var(--text-main);
+  outline: none;
+}
+
+.st-reason-area {
+  min-height: 80px;
+  resize: none;
+  background: var(--input-bg);
+  color: var(--text-main);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+.st-btn-primary-full {
+  background: var(--primary);
+  color: white;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.st-btn-primary-full:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+}
+
+/* Green Box: Row Styling */
+.habit-card-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px; /* Increased padding for better vertical breathing */
+  background: var(--card-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  margin-top: 12px;
+  transition: all 0.3s ease;
+  min-height: 110px; /* FIXED: Prevents jumping when brokenCount is added */
+}
+
+.habit-is-done {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.habit-content {
+  display: flex;
+  align-items: flex-start; /* Aligned to start to handle multi-line labels */
+  gap: 16px;
+}
+
+.habit-labels {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.habit-labels h4 {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 1.05rem;
+}
+
+.reason-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* THE INTEGRITY RECORD TAG */
+.broken-record-tag {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #64748b; /* Muted Slate */
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.fail-val {
+  color: #ef4444; /* Sharp Red for failure count */
+  margin-left: 4px;
+}
+
+.strike-text {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+/* Statistics and Controls */
+.habit-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.streak-pill-box {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 60px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.s-count {
+  display: block;
+  font-weight: 800;
+  color: #f59e0b;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.s-label {
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #64748b;
+  letter-spacing: 0.5px;
+}
+
+.btn-close-dark {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.btn-close-dark:hover { color: #ef4444; }

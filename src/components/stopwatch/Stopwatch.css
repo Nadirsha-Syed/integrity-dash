@@ -1,0 +1,99 @@
+.ft-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box; /* Prevents padding from breaking the grid */
+}
+
+.ft-select-container {
+  width: 100%;
+}
+
+.ft-dropdown {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  /* Use theme variables to prevent the 'glare' */
+  border: 1.5px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text-main);
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.ft-presets {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ft-pill {
+  /* Preset buttons now match the card theme */
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ft-pill:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.ft-time-display {
+  font-size: 5.5rem; /* Slightly larger for professional impact */
+  font-weight: 800;
+  color: var(--primary);
+  text-align: center;
+  /* Tabular-nums prevent the clock from 'shaking' while counting */
+  font-variant-numeric: tabular-nums;
+  margin: 10px 0;
+}
+
+.ft-actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.ft-btn-primary {
+  flex: 2; /* Main action is visually dominant */
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.ft-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.ft-btn-outline {
+  flex: 1;
+  background: var(--card-bg);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Correct Disabled State for Midnight */
+.ft-btn-primary:disabled {
+  background: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}

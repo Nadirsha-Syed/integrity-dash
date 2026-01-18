@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+/* THEME VARIABLES */
+:root {
+  --radius: 20px; /* Slightly smoother corners for high-fidelity look */
+  --primary: #6366f1;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --input-bg: #ffffff;
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --bg: #020617;
+  --card-bg: #0f172a;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --border: #1e293b;
+  --input-bg: #020617;
+  --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* BASE RESET */
+body { 
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+  background: var(--bg); 
+  color: var(--text-main); 
+  transition: background 0.3s ease, color 0.3s ease; 
+  margin: 0;
+}
+
+/* APP LAYOUT */
+.app-container { 
+  max-width: 1440px; 
+  margin: 0 auto; 
+  padding: 20px 40px 60px; /* Adjusted for centered feel */
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr; /* Optimized for PromiseList vs Buddy layout */
+  gap: 32px;
+  align-items: start;
+}
+
+.grid-column { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 32px; 
+}
+
+/* LOGIN SCREEN STYLING */
+.login-screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.login-card {
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+}
+
+.google-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 24px;
+}
+
+.google-login-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+/* MODULE CARDS */
+.module-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+/* FORM ELEMENTS */
+h1, h2, h3, h4 { color: var(--text-main); margin-top: 0; }
+p, label { color: var(--text-muted); }
+
+input, textarea {
+  background-color: var(--input-bg) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box; /* Crucial for preventing layout spoiling */
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+@media (max-width: 1100px) { 
+  .dashboard-grid { grid-template-columns: 1fr; } 
+  .app-container { padding: 20px; }
+}

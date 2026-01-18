@@ -1,0 +1,137 @@
+.todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.main-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  font-size: 1rem;
+  /* Use theme variables to stop the 'glare' */
+  background: var(--input-bg);
+  color: var(--text-main);
+  transition: border-color 0.2s, background 0.3s;
+  box-sizing: border-box; /* Prevents breaking the grid structure */
+}
+
+.main-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.input-group-row {
+  display: flex;
+  gap: 10px;
+}
+
+.date-input {
+  flex: 2;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text-muted);
+  font-family: inherit;
+}
+
+.btn-add {
+  flex: 1;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.btn-add:hover {
+  filter: brightness(1.1);
+}
+
+/* --- List Item Rows --- */
+.todo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  /* Use card-bg variable to match the theme */
+  background: var(--card-bg);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: background 0.3s, border 0.3s;
+}
+
+.todo-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.todo-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-text {
+  font-weight: 600;
+  color: var(--text-main); /* Flips to white in dark mode */
+}
+
+.todo-text.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.todo-date-tag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Custom Checkbox - Fixed for Dark Mode */
+.custom-checkbox {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.custom-checkbox input { opacity: 0; width: 0; height: 0; }
+
+.checkmark {
+  position: absolute;
+  top: 0; left: 0;
+  height: 22px; width: 22px;
+  /* Checkbox box now matches input theme */
+  background-color: var(--input-bg);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: #10b981;
+  border-color: #10b981;
+}
+
+.delete-icon-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.delete-icon-btn:hover {
+  background: rgba(239, 68, 68, 0.1); /* Subtle red tint for both themes */
+  color: #ef4444;
+}

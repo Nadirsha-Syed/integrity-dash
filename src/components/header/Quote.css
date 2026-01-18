@@ -1,0 +1,120 @@
+/* Layout Container */
+.quote-container {
+  text-align: center;
+  margin-bottom: 30px;
+  min-height: 100px; /* Fixed height prevents layout "spoiling" */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Quote Display */
+.main-quote {
+  font-size: 1.8rem; /* Adjusted for better readability */
+  font-weight: 800;
+  color: #6366f1; /* Your signature Indigo color */
+  margin: 0;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  transition: filter 0.3s ease;
+}
+
+.main-quote.blur {
+  filter: blur(5px);
+  opacity: 0.4;
+}
+
+.quote-display-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+}
+
+/* Edit Controls */
+.quote-controls {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.quote-display-group:hover .quote-controls {
+  opacity: 1;
+}
+
+.btn-edit-quote {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: all 0.2s;
+}
+
+.btn-edit-quote:hover {
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.1);
+  border-color: #6366f1;
+}
+
+/* Edit Form Styling */
+.quote-edit-group {
+  display: flex;
+  flex-direction: column; /* Stacked for better mobile/narrow layout */
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.quote-input {
+  width: 100%;
+  padding: 12px 18px;
+  background: var(--input-bg);
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  color: var(--text-main);
+  font-size: 1.1rem;
+  font-family: inherit;
+  box-sizing: border-box; 
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.quote-input:focus {
+  border-color: #6366f1;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-quote-save {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, filter 0.2s;
+}
+
+.btn-quote-save:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn-quote-cancel {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
