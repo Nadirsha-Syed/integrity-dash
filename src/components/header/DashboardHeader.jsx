@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme'; 
 import { auth } from '../../firebase'; 
 import { signOut } from 'firebase/auth';
-import './Header.css';
+import './header.css';
 
 const DashboardHeader = ({ user }) => {
   const [time, setTime] = useState(new Date());
