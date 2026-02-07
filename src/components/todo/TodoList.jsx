@@ -31,11 +31,13 @@ const TodoList = () => {
           onChange={e => setText(e.target.value)} 
         />
         <div className="input-group-row">
+          {/* CRITICAL FIX: Adding onClick to ensure the picker opens on all browsers */}
           <input 
             type="datetime-local" 
             className="date-input"
             value={deadline} 
-            onChange={e => setDeadline(e.target.value)} 
+            onChange={e => setDeadline(e.target.value)}
+            onClick={(e) => e.target.showPicker && e.target.showPicker()} // Programmatically triggers the calendar
           />
           <button type="submit" className="btn-add">Add Task</button>
         </div>

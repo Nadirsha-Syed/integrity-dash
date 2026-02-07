@@ -28,24 +28,39 @@
   gap: 10px;
 }
 
-/* CRITICAL FIX: Enhanced Date/Time Input for Desktop */
+/* CRITICAL FIX: Making Date/Time Input Interactive */
 .date-input {
   flex: 2;
   padding: 12px;
   border-radius: 10px;
   border: 1.5px solid var(--border);
   background: var(--input-bg);
-  color: var(--text-main); /* Ensure text is readable against dark bg */
+  color: var(--text-main); 
   font-family: inherit;
-  color-scheme: dark; /* IMPORTANT: Forces dark-mode browser picker */
+  color-scheme: dark; 
   cursor: pointer;
-  appearance: none; /* Helps uniform look across browsers */
+  appearance: none;
+  position: relative; /* Ensure it stays in its own layer */
+  z-index: 2; /* Lift above any hidden container overlaps */
 }
 
-/* Ensure the calendar/clock icon is clickable and visible */
+/* Ensuring the calendar icon is visible and taking up click space */
 .date-input::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* Makes the icon white so you can see it on dark bg */
+  filter: invert(1); 
   cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+}
+
+/* Fallback: Make the entire input block trigger the picker in some browsers */
+.date-input:active, .date-input:focus {
+  outline: none;
+  border-color: var(--primary);
 }
 
 .btn-add {
