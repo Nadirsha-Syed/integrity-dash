@@ -1,3 +1,4 @@
+/* --- Updated Todo Form Styles --- */
 .todo-form {
   display: flex;
   flex-direction: column;
@@ -11,11 +12,10 @@
   border: 1.5px solid var(--border);
   border-radius: 10px;
   font-size: 1rem;
-  /* Use theme variables to stop the 'glare' */
   background: var(--input-bg);
   color: var(--text-main);
   transition: border-color 0.2s, background 0.3s;
-  box-sizing: border-box; /* Prevents breaking the grid structure */
+  box-sizing: border-box;
 }
 
 .main-input:focus {
@@ -28,14 +28,24 @@
   gap: 10px;
 }
 
+/* CRITICAL FIX: Enhanced Date/Time Input for Desktop */
 .date-input {
   flex: 2;
   padding: 12px;
   border-radius: 10px;
   border: 1.5px solid var(--border);
   background: var(--input-bg);
-  color: var(--text-muted);
+  color: var(--text-main); /* Ensure text is readable against dark bg */
   font-family: inherit;
+  color-scheme: dark; /* IMPORTANT: Forces dark-mode browser picker */
+  cursor: pointer;
+  appearance: none; /* Helps uniform look across browsers */
+}
+
+/* Ensure the calendar/clock icon is clickable and visible */
+.date-input::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* Makes the icon white so you can see it on dark bg */
+  cursor: pointer;
 }
 
 .btn-add {
@@ -59,7 +69,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 20px;
-  /* Use card-bg variable to match the theme */
   background: var(--card-bg);
   border-radius: 12px;
   margin-bottom: 12px;
@@ -81,7 +90,7 @@
 
 .todo-text {
   font-weight: 600;
-  color: var(--text-main); /* Flips to white in dark mode */
+  color: var(--text-main);
 }
 
 .todo-text.completed {
@@ -95,7 +104,7 @@
   margin-top: 2px;
 }
 
-/* Custom Checkbox - Fixed for Dark Mode */
+/* Custom Checkbox */
 .custom-checkbox {
   position: relative;
   width: 22px;
@@ -109,7 +118,6 @@
   position: absolute;
   top: 0; left: 0;
   height: 22px; width: 22px;
-  /* Checkbox box now matches input theme */
   background-color: var(--input-bg);
   border: 2px solid var(--border);
   border-radius: 6px;
@@ -132,6 +140,6 @@
 }
 
 .delete-icon-btn:hover {
-  background: rgba(239, 68, 68, 0.1); /* Subtle red tint for both themes */
+  background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
 }

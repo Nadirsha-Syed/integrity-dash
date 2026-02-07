@@ -1,6 +1,6 @@
 /* Layout Container */
 .dashboard-header {
-  padding: 40px 0 20px 0;
+  padding: 40px 20px 20px 20px; /* Added side padding for mobile */
   text-align: center;
   width: 100%;
   box-sizing: border-box;
@@ -11,8 +11,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 15px; /* Consistent spacing between all pills */
+  gap: 15px;
   margin-bottom: 10px;
+  flex-wrap: wrap; /* CRITICAL: Allows pills to move to next line instead of overlapping */
 }
 
 /* Professional Toggle Pill & General Pill Base */
@@ -25,7 +26,8 @@
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
-  height: 32px; /* Uniform height for visual alignment */
+  height: 32px;
+  white-space: nowrap; /* Prevents text inside pills from breaking */
 }
 
 .theme-toggle-pill {
@@ -36,7 +38,7 @@
 }
 
 .theme-toggle-pill:hover {
-  border-color: #6366f1; /* Your signature Indigo */
+  border-color: #6366f1;
   background: rgba(99, 102, 241, 0.1);
   transform: translateY(-1px);
 }
@@ -49,6 +51,7 @@
   font-variant-numeric: tabular-nums;
   letter-spacing: -2px;
   margin: 10px 0;
+  width: 100%; /* Forces clock to its own line if needed */
 }
 
 /* Date Display Pill */
@@ -60,7 +63,7 @@
   letter-spacing: 1.5px;
 }
 
-/* NEW: User Controls Section */
+/* User Controls Section */
 .user-controls {
   display: flex;
   align-items: center;
@@ -76,11 +79,11 @@
   opacity: 0.8;
 }
 
-/* NEW: Logout Pill */
+/* Logout Pill */
 .logout-pill {
-  background: rgba(239, 68, 68, 0.08); /* Subtle soft red tint */
+  background: rgba(239, 68, 68, 0.08);
   border: 1px solid rgba(239, 68, 68, 0.2);
-  color: #ef4444; /* Clean "Danger" red for clarity */
+  color: #ef4444;
   cursor: pointer;
   border-radius: 20px;
   font-size: 0.7rem;
@@ -95,4 +98,29 @@
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }
 
-/* NOTE: .display-quote and .edit-hint are managed in Quote.css */
+/* --- MOBILE RESPONSIVE FIXES --- */
+@media (max-width: 600px) {
+  .dashboard-header {
+    padding: 20px 15px; /* Tighter padding for mobile phones */
+  }
+
+  .status-bar {
+    gap: 8px; /* Slightly tighter gap to fit more pills */
+  }
+
+  .time-display {
+    font-size: 2.8rem; /* Reduced size to stop it from overflowing the screen */
+    letter-spacing: -1px;
+    margin: 5px 0;
+  }
+
+  .user-name {
+    display: none; /* Hides username on mobile to save horizontal space */
+  }
+  
+  .theme-toggle-pill, .date-display, .logout-pill {
+    padding: 4px 12px;
+    font-size: 0.7rem; /* Smaller text for mobile accessibility */
+    height: 28px;
+  }
+}
