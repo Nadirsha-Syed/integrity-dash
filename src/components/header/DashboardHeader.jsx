@@ -15,7 +15,7 @@ const DashboardHeader = ({ user }) => {
 
   const handleLogout = async () => {
     try {
-      await signOut(auth); // This triggers onAuthStateChanged in App.jsx
+      await signOut(auth);
     } catch (error) {
       console.error("Logout error:", error);
     }
@@ -23,20 +23,16 @@ const DashboardHeader = ({ user }) => {
 
   return (
     <header className="dashboard-header">
+      {/* Top row for utility controls */}
       <div className="status-bar">
         <button onClick={toggleTheme} className="theme-toggle-pill">
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+          {theme === 'light' ? '🌙' : '☀️'}
         </button>
-        
-        <div className="time-display">
-          {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-        </div>
         
         <div className="date-display">
           {time.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' }).toUpperCase()}
         </div>
 
-        {/* Safe User Display with Optional Chaining */}
         <div className="user-controls">
           <span className="user-name">
             {user?.displayName?.split(' ')[0] || 'User'}
@@ -45,6 +41,16 @@ const DashboardHeader = ({ user }) => {
             LOGOUT
           </button>
         </div>
+      </div>
+
+      {/* Hero Time Display - Centerpiece */}
+      <div className="hero-time">
+        <h1 className="time-display">
+          {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </h1>
+        <p className="time-period">
+          {time.toLocaleTimeString([], { hour: '2-digit', hour12: true }).split(' ')[1]}
+        </p>
       </div>
     </header>
   );
