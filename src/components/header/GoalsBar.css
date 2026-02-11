@@ -1,72 +1,59 @@
 .goals-container {
   display: flex;
-  gap: 15px;
-  padding: 0 20px 30px;
-  width: 100%;
-  max-width: 1200px; /* Prevents stretching too wide on large screens */
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
   margin: 0 auto;
-  box-sizing: border-box;
 }
 
 .goal-card {
   flex: 1;
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px;
-  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 250px;
+  backdrop-filter: blur(10px);
+}
+
+.goal-card-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.goal-card:focus-within {
-  border-color: #6366f1; /* Your signature Indigo focus */
-  transform: translateY(-4px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.goal-label {
-  display: block;
-  font-size: 0.65rem;
-  font-weight: 800;
-  color: #6366f1;
-  letter-spacing: 1.5px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-/* NEW: Multi-line List Styling */
-.goal-input.list-mode {
-  width: 100%;
-  background: transparent;
+.add-goal-btn {
+  background: #6366f1;
   border: none;
-  color: var(--text-main);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  color: #fff;
   font-size: 0.95rem;
-  font-weight: 500;
-  line-height: 1.6;
-  outline: none;
-  resize: none; /* Removes the resize handle for a cleaner UI */
-  min-height: 120px; /* Gives enough space for a visible list */
-  white-space: pre-wrap; /* Essential: Preserves your line breaks/enters */
-  font-family: inherit;
-  padding: 0;
+  transition: opacity 0.3s;
 }
 
-.goal-input.list-mode::placeholder {
-  color: var(--text-muted);
+.goal-item.done {
   opacity: 0.4;
-  font-style: italic;
+  text-decoration: line-through;
 }
 
-/* Mobile Responsive */
-@media (max-width: 600px) {
-  .goals-container {
-    flex-direction: column;
-    padding: 0 15px 20px;
-    gap: 12px;
-  }
-  
-  .goal-input.list-mode {
-    min-height: 100px; /* Slightly shorter on mobile to save screen space */
-  }
+.goal-item input[type="checkbox"] {
+  accent-color: #6366f1; /* Matches your indigo theme */
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .goals-container { flex-direction: column; }
 }
