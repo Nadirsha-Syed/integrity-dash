@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme'; 
 import { auth } from '../../firebase'; 
 import { signOut } from 'firebase/auth';
+import GoalsBar from './GoalsBar'; // Import the GoalsBar from the same folder
 import './Header.css';
 
 const DashboardHeader = ({ user }) => {
@@ -23,7 +24,7 @@ const DashboardHeader = ({ user }) => {
 
   return (
     <header className="dashboard-header">
-      {/* Top row for utility controls */}
+      {/* 1. Status Bar: Utility Controls */}
       <div className="status-bar">
         <button onClick={toggleTheme} className="theme-toggle-pill">
           {theme === 'light' ? '🌙' : '☀️'}
@@ -43,7 +44,7 @@ const DashboardHeader = ({ user }) => {
         </div>
       </div>
 
-      {/* Hero Time Display - Centerpiece */}
+      {/* 2. Hero Section: The Large Clock */}
       <div className="hero-time">
         <h1 className="time-display">
           {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -52,6 +53,9 @@ const DashboardHeader = ({ user }) => {
           {time.toLocaleTimeString([], { hour: '2-digit', hour12: true }).split(' ')[1]}
         </p>
       </div>
+
+      {/* 3. Strategic Section: Yearly, Monthly, Weekly Goals */}
+      <GoalsBar user={user} />
     </header>
   );
 };
