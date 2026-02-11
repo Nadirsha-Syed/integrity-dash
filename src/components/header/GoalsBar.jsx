@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../../firebase/config';
+import { db } from '../../firebase'; // Fixed: Changed from '../../firebase/config'
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import './GoalsBar.css';
 
