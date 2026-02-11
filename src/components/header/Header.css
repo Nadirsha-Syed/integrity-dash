@@ -16,7 +16,7 @@
   flex-wrap: wrap; 
 }
 
-/* NEW: Hero Time Container for visual hierarchy */
+/* Hero Time Container */
 .hero-time {
   margin: 10px 0 20px 0;
   display: flex;
@@ -24,17 +24,16 @@
   align-items: center;
 }
 
-/* NEW: Period indicator (AM/PM) */
 .time-period {
   font-size: 1rem;
   font-weight: 800;
-  color: #6366f1; /* Using your signature Indigo */
+  color: #6366f1; 
   text-transform: uppercase;
   margin-top: -10px;
   letter-spacing: 2px;
 }
 
-/* Professional Toggle Pill & General Pill Base */
+/* Professional Pills */
 .theme-toggle-pill, .date-display, .logout-pill {
   padding: 6px 16px;
   border-radius: 20px;
@@ -55,23 +54,62 @@
   cursor: pointer;
 }
 
-.theme-toggle-pill:hover {
-  border-color: #6366f1;
-  background: rgba(99, 102, 241, 0.1);
-  transform: translateY(-1px);
-}
-
-/* Updated Clock Display */
 .time-display {
   font-size: 4rem;
   font-weight: 900;
   color: var(--text-main);
   font-variant-numeric: tabular-nums;
   letter-spacing: -2px;
-  margin: 0; /* Adjusted for hero-time container */
+  margin: 0; 
 }
 
-/* Date Display Pill */
+/* --- NEW: Goals Bar Styles --- */
+.goals-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px 20px 30px;
+  width: 100%;
+  max-width: 1000px; /* Keeps goals from stretching too wide on desktop */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.goal-card {
+  flex: 1;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-align: left; /* Better readability for text entry */
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.goal-card:focus-within {
+  border-color: #6366f1;
+  transform: translateY(-2px);
+}
+
+.goal-label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #6366f1;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.goal-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+}
+
+/* Date/User Controls */
 .date-display {
   color: var(--text-muted);
   text-transform: uppercase;
@@ -80,7 +118,6 @@
   letter-spacing: 1.5px;
 }
 
-/* User Controls Section */
 .user-controls {
   display: flex;
   align-items: center;
@@ -96,23 +133,11 @@
   opacity: 0.8;
 }
 
-/* Logout Pill */
 .logout-pill {
   background: rgba(239, 68, 68, 0.08);
   border: 1px solid rgba(239, 68, 68, 0.2);
   color: #ef4444;
   cursor: pointer;
-  border-radius: 20px;
-  font-size: 0.7rem;
-  font-weight: 800;
-}
-
-.logout-pill:hover {
-  background: #ef4444;
-  color: #ffffff;
-  border-color: #ef4444;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
 }
 
 /* --- MOBILE RESPONSIVE FIXES --- */
@@ -121,27 +146,17 @@
     padding: 20px 15px;
   }
 
-  .status-bar {
-    gap: 8px;
+  .goals-container {
+    flex-direction: column; /* Stack goals vertically on small screens */
+    gap: 10px;
+    padding: 0 10px 20px;
   }
 
   .time-display {
     font-size: 2.8rem;
-    letter-spacing: -1px;
-  }
-
-  .time-period {
-    font-size: 0.8rem;
-    margin-top: -5px;
   }
 
   .user-name {
     display: none;
-  }
-  
-  .theme-toggle-pill, .date-display, .logout-pill {
-    padding: 4px 12px;
-    font-size: 0.7rem;
-    height: 28px;
   }
 }
