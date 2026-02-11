@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../hooks/useTheme'; 
 import { auth } from '../../firebase'; 
 import { signOut } from 'firebase/auth';
-import GoalsBar from './GoalsBar'; // Import the GoalsBar from the same folder
+import GoalsBar from './GoalsBar'; 
 import './Header.css';
 
 const DashboardHeader = ({ user }) => {
@@ -20,6 +20,14 @@ const DashboardHeader = ({ user }) => {
     } catch (error) {
       console.error("Logout error:", error);
     }
+  };
+
+  // Dynamic Greeting based on current hour
+  const getGreeting = () => {
+    const hour = time.getHours();
+    if (hour < 12) return "Good Morning";
+    if (hour < 17) return "Good Afternoon";
+    return "Good Evening";
   };
 
   return (
@@ -54,7 +62,13 @@ const DashboardHeader = ({ user }) => {
         </p>
       </div>
 
-      {/* 3. Strategic Section: Yearly, Monthly, Weekly Goals */}
+      {/* 3. Quote & Greeting Section */}
+      <div className="inspiration-zone">
+        <h2 className="greeting-text">{getGreeting()}, {user?.displayName?.split(' ')[0] || 'User'}</h2>
+        <p className="daily-quote">"Integrity is doing the right thing, even when no one is watching."</p>
+      </div>
+
+      {/* 4. Strategic Section: Now positioned below the quote */}
       <GoalsBar user={user} />
     </header>
   );

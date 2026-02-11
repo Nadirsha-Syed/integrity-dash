@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../../firebase'; // Fixed: Changed from '../../firebase/config'
+import { db } from '../../firebase'; 
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import './GoalsBar.css';
 
@@ -14,10 +14,17 @@ const GoalsBar = ({ user }) => {
     return unsub;
   }, [user]);
 
-  const handleChange = (type, value) => {
+  const handleChange = async (type, value) => {
+    // Update local state immediately for smooth typing
     const newGoals = { ...goals, [type]: value };
     setGoals(newGoals);
-    setDoc(doc(db, 'goals', user.uid), newGoals); // Auto-saves as you type
+
+    // Save to Firestore
+    try {
+      await setDoc(doc(db, 'goals', user.uid), newGoals);
+    } catch (error) {
+      console.error("Firestore Save Error:", error);
+    }
   };
 
   return (
@@ -25,11 +32,12 @@ const GoalsBar = ({ user }) => {
       {['yearly', 'monthly', 'weekly'].map((type) => (
         <div key={type} className="goal-card">
           <label className="goal-label">{type.toUpperCase()} FOCUS</label>
-          <input
-            className="goal-input"
-            placeholder={`Set ${type} goal...`}
-            value={goals[type]}
+          <textarea
+            className="goal-input list-mode"
+            placeholder={`• Goal 1\n• Goal 2...`}
+            value={goals[type] || ''}
             onChange={(e) => handleChange(type, e.target.value)}
+            spellCheck="false"
           />
         </div>
       ))}

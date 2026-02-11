@@ -3,6 +3,8 @@
   gap: 15px;
   padding: 0 20px 30px;
   width: 100%;
+  max-width: 1200px; /* Prevents stretching too wide on large screens */
+  margin: 0 auto;
   box-sizing: border-box;
 }
 
@@ -11,32 +13,49 @@
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 12px 16px;
-  transition: transform 0.2s, border-color 0.2s;
+  padding: 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .goal-card:focus-within {
-  border-color: var(--primary);
-  transform: translateY(-2px);
+  border-color: #6366f1; /* Your signature Indigo focus */
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .goal-label {
   display: block;
   font-size: 0.65rem;
   font-weight: 800;
-  color: var(--primary);
-  letter-spacing: 1px;
-  margin-bottom: 6px;
+  color: #6366f1;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
-.goal-input {
+/* NEW: Multi-line List Styling */
+.goal-input.list-mode {
   width: 100%;
   background: transparent;
   border: none;
   color: var(--text-main);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
+  line-height: 1.6;
   outline: none;
+  resize: none; /* Removes the resize handle for a cleaner UI */
+  min-height: 120px; /* Gives enough space for a visible list */
+  white-space: pre-wrap; /* Essential: Preserves your line breaks/enters */
+  font-family: inherit;
+  padding: 0;
+}
+
+.goal-input.list-mode::placeholder {
+  color: var(--text-muted);
+  opacity: 0.4;
+  font-style: italic;
 }
 
 /* Mobile Responsive */
@@ -44,5 +63,10 @@
   .goals-container {
     flex-direction: column;
     padding: 0 15px 20px;
+    gap: 12px;
+  }
+  
+  .goal-input.list-mode {
+    min-height: 100px; /* Slightly shorter on mobile to save screen space */
   }
 }
