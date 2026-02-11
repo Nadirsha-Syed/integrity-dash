@@ -59,55 +59,64 @@
   transform: scale(1.1);
 }
 
-/* Updated Goal Item with Delete Support */
 .goal-item {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
-  padding: 10px 0;
+  gap: 14px; /* More breathing room */
+  padding: 12px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  position: relative; /* Context for absolute positioning if needed */
+  position: relative;
 }
 
 .goal-item:last-child {
   border-bottom: none;
 }
 
+/* Updated Modern Checkbox with Centering Logic */
 .goal-item input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  background: transparent;
+  width: 22px; /* Increased size for visual balance */
+  height: 22px;
+  background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   position: relative;
-  margin-top: 3px;
+  margin-top: 2px;
   flex-shrink: 0;
+  
+  /* THIS FIXES THE CENTERING */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .goal-item input[type="checkbox"]:checked {
   background: #6366f1;
   border-color: #6366f1;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
 }
 
+/* Center and scale the tick */
 .goal-item input[type="checkbox"]:checked::after {
   content: '✓';
-  position: absolute;
+  position: static; /* Let flexbox handle positioning */
   color: white;
-  font-size: 12px;
-  left: 3px;
-  top: -1px;
+  font-size: 14px; /* Scaled up for visibility */
+  font-weight: 900;
+  line-height: 1;
 }
 
 .goal-text {
-  flex: 1; /* Pushes the delete button to the right */
+  flex: 1;
   color: var(--text-main);
   font-size: 0.95rem;
   font-weight: 500;
   line-height: 1.5;
   transition: all 0.3s;
+  padding-top: 1px; /* Align with checkbox */
 }
 
 .goal-item.done .goal-text {
@@ -115,14 +124,13 @@
   text-decoration: line-through;
 }
 
-/* NEW: Delete Button Styling */
 .delete-goal-btn {
   background: transparent;
   border: none;
-  color: #ef4444; /* Alert red */
+  color: #ef4444;
   font-size: 1.2rem;
   cursor: pointer;
-  opacity: 0; /* Hidden until hover */
+  opacity: 0;
   transition: all 0.2s ease;
   padding: 0 4px;
   line-height: 1;
@@ -137,14 +145,11 @@
   transform: scale(1.2);
 }
 
-/* Mobile Responsive */
 @media (max-width: 800px) {
   .goals-container {
     flex-direction: column;
     padding: 10px 15px;
   }
-  
-  /* Make delete buttons always visible on touch devices */
   .delete-goal-btn {
     opacity: 0.5;
   }
