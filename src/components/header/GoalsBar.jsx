@@ -15,7 +15,7 @@ const GoalsBar = ({ user }) => {
   }, [user]);
 
   const toggleGoal = async (category, index) => {
-    const updatedCategory = [...goals[category]];
+    const updatedCategory = [...(goals[category] || [])];
     updatedCategory[index].completed = !updatedCategory[index].completed;
     const newGoals = { ...goals, [category]: updatedCategory };
     setGoals(newGoals);
@@ -24,11 +24,19 @@ const GoalsBar = ({ user }) => {
 
   const addGoal = async (category) => {
     const text = prompt(`Add a new ${category} focus:`);
-    if (!text) return;
+    if (!text || text.trim() === "") return;
     const newGoals = { 
       ...goals, 
       [category]: [...(goals[category] || []), { text, completed: false }] 
     };
+    setGoals(newGoals);
+    await setDoc(doc(db, 'goals', user.uid), newGoals);
+  };
+
+  // NEW: Delete Function
+  const deleteGoal = async (category, index) => {
+    const updatedCategory = goals[category].filter((_, i) => i !== index);
+    const newGoals = { ...goals, [category]: updatedCategory };
     setGoals(newGoals);
     await setDoc(doc(db, 'goals', user.uid), newGoals);
   };
@@ -38,7 +46,7 @@ const GoalsBar = ({ user }) => {
       {['yearly', 'monthly', 'weekly'].map((cat) => (
         <div key={cat} className="goal-card">
           <div className="goal-card-header">
-            <label className="goal-label">{cat.toUpperCase()} FOCUS</label>
+            <span className="goal-label">{cat.toUpperCase()} FOCUS</span>
             <button onClick={() => addGoal(cat)} className="add-goal-btn">+</button>
           </div>
           <div className="goal-list">
@@ -49,7 +57,15 @@ const GoalsBar = ({ user }) => {
                   checked={goal.completed} 
                   onChange={() => toggleGoal(cat, idx)} 
                 />
-                <span>{goal.text}</span>
+                <span className="goal-text">{goal.text}</span>
+                {/* NEW: Trash icon appears on hover */}
+                <button 
+                  className="delete-goal-btn" 
+                  onClick={() => deleteGoal(cat, idx)}
+                  aria-label="Delete goal"
+                >
+                  ×
+                </button>
               </div>
             ))}
           </div>

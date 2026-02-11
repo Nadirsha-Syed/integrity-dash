@@ -1,59 +1,151 @@
 .goals-container {
   display: flex;
+  justify-content: center;
   gap: 20px;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .goal-card {
   flex: 1;
   background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
   border-radius: 16px;
   padding: 20px;
-  min-height: 250px;
-  backdrop-filter: blur(10px);
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.goal-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #6366f1;
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .goal-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.goal-label {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: #6366f1;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
 }
 
 .add-goal-btn {
-  background: #6366f1;
-  border: none;
-  color: white;
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  transition: all 0.2s;
 }
 
+.add-goal-btn:hover {
+  background: #6366f1;
+  transform: scale(1.1);
+}
+
+/* Updated Goal Item with Delete Support */
 .goal-item {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 0;
-  color: #fff;
-  font-size: 0.95rem;
-  transition: opacity 0.3s;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative; /* Context for absolute positioning if needed */
 }
 
-.goal-item.done {
-  opacity: 0.4;
-  text-decoration: line-through;
+.goal-item:last-child {
+  border-bottom: none;
 }
 
 .goal-item input[type="checkbox"] {
-  accent-color: #6366f1; /* Matches your indigo theme */
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
   cursor: pointer;
+  position: relative;
+  margin-top: 3px;
+  flex-shrink: 0;
 }
 
+.goal-item input[type="checkbox"]:checked {
+  background: #6366f1;
+  border-color: #6366f1;
+}
+
+.goal-item input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 12px;
+  left: 3px;
+  top: -1px;
+}
+
+.goal-text {
+  flex: 1; /* Pushes the delete button to the right */
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+  transition: all 0.3s;
+}
+
+.goal-item.done .goal-text {
+  opacity: 0.3;
+  text-decoration: line-through;
+}
+
+/* NEW: Delete Button Styling */
+.delete-goal-btn {
+  background: transparent;
+  border: none;
+  color: #ef4444; /* Alert red */
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0; /* Hidden until hover */
+  transition: all 0.2s ease;
+  padding: 0 4px;
+  line-height: 1;
+}
+
+.goal-item:hover .delete-goal-btn {
+  opacity: 0.7;
+}
+
+.delete-goal-btn:hover {
+  opacity: 1 !important;
+  transform: scale(1.2);
+}
+
+/* Mobile Responsive */
 @media (max-width: 800px) {
-  .goals-container { flex-direction: column; }
+  .goals-container {
+    flex-direction: column;
+    padding: 10px 15px;
+  }
+  
+  /* Make delete buttons always visible on touch devices */
+  .delete-goal-btn {
+    opacity: 0.5;
+  }
 }
